@@ -22,7 +22,7 @@ export const users = mysqlTable("users", {
   name: varchar("name", { length: 100 }).notNull(),
   email: varchar("email", { length: 100 }).notNull().unique(),
   password: varchar("password", { length: 255 }).notNull(),
-  noTelepon: varchar("no_telepon", { length: 20 }),
+  no_telepon: varchar("no_telepon", { length: 20 }),
   role: mysqlEnum("role", ["customer", "admin", "kasir"])
     .notNull()
     .default("customer"),
