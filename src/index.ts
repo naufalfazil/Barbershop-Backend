@@ -1,5 +1,6 @@
 import express from "express";
 import serviceRoutes from "./routes/service/service.routes";
+import authRoutes from "./routes/auth/auth.routes";
 
 const app = express();
 const PORT = 3000;
@@ -11,6 +12,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
     res.send("Hello Express + TypeScript!");
 });
+
+app.use("/api/auth", authRoutes);
 
 // Hubungkan routes layanan
 app.use("/api/services", serviceRoutes);
