@@ -1,6 +1,7 @@
 import express from "express";
 import serviceRoutes from "./routes/service/service.routes";
 import authRoutes from "./routes/auth/auth.routes";
+import barberRoutes from "./routes/barber/barber.routes";
 
 const app = express();
 const PORT = 3000;
@@ -17,6 +18,8 @@ app.use("/api/auth", authRoutes);
 
 // Hubungkan routes layanan
 app.use("/api/services", serviceRoutes);
+
+app.use("/api/barbers", barberRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);

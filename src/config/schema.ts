@@ -1,18 +1,6 @@
 
 import { mysqlTableWithSchema } from "drizzle-orm/mysql-core";
-import {
-  mysqlTable,
-  bigint,
-  varchar,
-  text,
-  decimal,
-  int,
-  tinyint,
-  mysqlEnum,
-  timestamp,
-  date,
-  time,
-} from "drizzle-orm/mysql-core";
+import { mysqlTable, bigint, varchar, text, decimal, int, tinyint, mysqlEnum, timestamp, date, time } from "drizzle-orm/mysql-core";
 
 export const users = mysqlTable("users", {
   idUser: bigint("id_user", {
