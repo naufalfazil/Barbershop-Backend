@@ -1,4 +1,3 @@
-
 import { Request, Response } from "express";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
@@ -116,6 +115,13 @@ class AuthController {
             }
 
             const user = result[0];
+
+            // Periksa apakah akun masih aktif
+            if (user.statusAktif !== 1) {
+                return res.status(403).json({
+                    message: "Akun anda sedang dinonaktifkan. Hubungi admin.",
+                });
+            }
 
             // Bandingkan password dengan hash di database
             const passwordMatch = await bcrypt.compare(

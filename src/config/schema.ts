@@ -1,4 +1,3 @@
-
 import { mysqlTableWithSchema } from "drizzle-orm/mysql-core";
 import { mysqlTable, bigint, varchar, text, decimal, int, tinyint, mysqlEnum, timestamp, date, time } from "drizzle-orm/mysql-core";
 
@@ -14,6 +13,9 @@ export const users = mysqlTable("users", {
   role: mysqlEnum("role", ["customer", "admin", "kasir"])
     .notNull()
     .default("customer"),
+  statusAktif: tinyint("status_aktif")
+    .notNull()
+    .default(1),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
         .defaultNow()
@@ -139,6 +141,7 @@ export const pemesanan = mysqlTable("pemesanan", {
 ])
   .notNull()
   .default("not_selected"),
+  completedAt: timestamp("completed_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
         .defaultNow()

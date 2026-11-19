@@ -2,6 +2,9 @@ import express from "express";
 import serviceRoutes from "./routes/service/service.routes";
 import authRoutes from "./routes/auth/auth.routes";
 import barberRoutes from "./routes/barber/barber.routes";
+import bookingRoutes from "./routes/booking/booking.routes";
+import cashierRoutes from "./routes/user/cashier.routes";
+
 
 const app = express();
 const PORT = 3000;
@@ -20,6 +23,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/services", serviceRoutes);
 
 app.use("/api/barbers", barberRoutes);
+
+app.use("/api/bookings", bookingRoutes);
+
+app.use("/api/users", cashierRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
