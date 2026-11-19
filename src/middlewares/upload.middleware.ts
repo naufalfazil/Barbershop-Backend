@@ -32,3 +32,4 @@ const upload = multer({
 
 export const uploadBarberPhoto = upload.single("foto");
 export const uploadServicePhoto = upload.single("foto");
+export const uploadPaymentProof = upload.single("buktiPembayaran");
