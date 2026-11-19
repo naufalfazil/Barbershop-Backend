@@ -33,6 +33,7 @@ export function authenticateToken(
                 message: "Konfigurasi server belum lengkap.",
             });
         }
+        
 
         const decoded = jwt.verify(token, secret);
 
@@ -47,6 +48,7 @@ export function authenticateToken(
         }
 
         (req as AuthRequest).user = decoded as TokenPayload;
+        
 
         next();
     } catch (error) {

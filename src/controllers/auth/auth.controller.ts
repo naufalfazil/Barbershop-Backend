@@ -150,6 +150,7 @@ class AuthController {
             const expiresIn = (process.env.JWT_EXPIRES_IN ||
                 "1d") as SignOptions["expiresIn"];
 
+            
             const token = jwt.sign(
                 {
                     idUser: user.idUser,
