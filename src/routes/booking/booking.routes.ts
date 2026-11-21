@@ -1,21 +1,26 @@
 import { Router } from "express";
-import { createBooking, getMyBookings, getBookingById, getAllBookings, cancelBooking, updateBookingStatus } from "../../controllers/booking/booking.controller";
+import { createBooking, getMyBookings, getBookingById, getAllBookings, cancelBooking, updateBookingStatus, rescheduleBooking } from "../../controllers/booking/booking.controller";
 import { authenticateToken } from "../../middlewares/auth.middleware";
+import { authorizeRole } from "../../middlewares/role.middleware";
 
 const router = Router();
 
-// Membuat booking (customer yang sudah login)
-router.post("/", authenticateToken, createBooking);
+// Customer
+router.post("/", authenticateToken, authorizeRole("customer"), createBooking );
 
-router.get("/my", authenticateToken, getMyBookings);
+router.get("/my", authenticateToken, authorizeRole("customer"), getMyBookings);
+router.patch("/:id/cancel", authenticateToken, authorizeRole("customer"), cancelBooking);
 
-router.get("/:id", authenticateToken, getBookingById);
+// Customer, admin, dan kasir
+router.get("/:id", authenticateToken, authorizeRole("customer", "admin", "kasir"), getBookingById
+);
 
-router.get("/", authenticateToken, getAllBookings);
+// Admin dan kasir
+router.get( "/", authenticateToken, authorizeRole("admin", "kasir"), getAllBookings);
 
-router.patch("/:id/cancel", authenticateToken, cancelBooking);
+// Kasir
+router.patch("/:id/status", authenticateToken, authorizeRole("kasir"), updateBookingStatus);
 
-router.patch("/:id/status", authenticateToken, updateBookingStatus);
-
+router.patch("/:id/reschedule", authenticateToken, authorizeRole("customer"), rescheduleBooking);
 
 export default router;

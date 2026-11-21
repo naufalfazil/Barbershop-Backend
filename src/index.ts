@@ -5,6 +5,7 @@ import barberRoutes from "./routes/barber/barber.routes";
 import bookingRoutes from "./routes/booking/booking.routes";
 import cashierRoutes from "./routes/user/cashier.routes";
 import paymentRoutes from "./routes/payment/payment.routes";
+import dashboardRoutes from "./routes/dashboard/dashboard.routes";
 
 
 const app = express();
@@ -30,6 +31,8 @@ app.use("/api/bookings", bookingRoutes);
 app.use("/api/users", cashierRoutes);
 
 app.use("/api/payments", paymentRoutes);
+
+app.use("/api/dashboard", dashboardRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
